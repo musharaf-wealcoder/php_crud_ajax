@@ -66,16 +66,37 @@ function delete_data(user_id){
 // data edit
 
 function edit_data(user_id){
-  alert(user_id);
+
+  $.ajax({
+    method: "GET",
+    url   : "edit.php",
+    data  : {
+      user_id : user_id,
+    },
+    success : function (data){
+      $('body').html(data);
+    }
+  })
+}
+
+
+function update_data(user_id){
+  var name     = $('#name').val();
+  var email     = $('#email').val();
+  var password     = $('#password').val();
 
   $.ajax({
     method : "GET",
-    url : "edit.php",
-    data : {
-
+    url : "update.php",
+    data: {
+      name : name,
+      email : email,
+      password : password,
+      user_id : user_id, 
     },
-    success : function (data){
+    success: function (data){
       console.log(data);
     }
   })
+
 }
